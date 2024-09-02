@@ -13,7 +13,6 @@ document.getElementById("search-button").addEventListener("click", function () {
       return response.json();
     })
     .then((data) => {
-      // Update Pokémon information
       document.getElementById("pokemon-name").textContent =
         data.name.toUpperCase();
       document.getElementById("pokemon-id").textContent = `#${data.id}`;
@@ -28,16 +27,14 @@ document.getElementById("search-button").addEventListener("click", function () {
         data.stats[4].base_stat;
       document.getElementById("speed").textContent = data.stats[5].base_stat;
 
-      // Clear types and add new ones
       const typesElement = document.getElementById("types");
-      typesElement.innerHTML = ""; // Clear existing types
+      typesElement.innerHTML = "";
       data.types.forEach((typeInfo) => {
         const type = document.createElement("p");
         type.textContent = typeInfo.type.name.toUpperCase();
         typesElement.appendChild(type);
       });
 
-      // Add sprite image
       const sprite = document.getElementById("sprite");
       sprite.src = data.sprites.front_default;
     })
